@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getDealers, getProductsWithCartInfo } from "redux-modules/catalog/selectors";
-import { fetchProductsThunk } from "redux-modules/catalog/actions";
+import { getDealers, getProductsWithCartInfo } from "modules/catalog/selectors";
+import { fetchProductsThunk } from "modules/catalog/actions";
 import { Product } from "./product";
 import { StyledCatalog } from "./styled-components";
 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   addProductToCartThunk,
   changeProductQuantityThunk,
-} from "redux-modules/cart/actions";
+} from "modules/cart/actions";
 import { StyledProduct } from "./styled-components";
 import {IMG_HOST, ALT_IMG_ULR} from 'api/constants'
 

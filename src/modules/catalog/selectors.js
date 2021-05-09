@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import {getCartProducts} from 'redux-modules/cart/selectors'
+import {getCartProducts} from 'modules/cart/selectors'
 
 const catalogSelector = (state) => state.catalog;
 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { Cart } from "./components/cart/cart";
 import { Catalog } from "./components/catalog/catalog";
-import { initializeCatalogThunk } from "redux-modules/catalog/actions";
+import { initializeCatalogThunk } from "modules/catalog/actions";
 
 export const App = ({ dealers }) => {
   const dispatch = useDispatch();

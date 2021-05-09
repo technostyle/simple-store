@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {useSelector, useDispatch} from 'react-redux'
-import { getCartProducts } from "redux-modules/cart/selectors";
-import { changeProductQuantityThunk } from "redux-modules/cart/actions";
+import { getCartProducts } from "modules/cart/selectors";
+import { changeProductQuantityThunk } from "modules/cart/actions";
 import {IMG_HOST, ALT_IMG_ULR} from 'api/constants'
 
 const StyledCartContainer = styled.div`
