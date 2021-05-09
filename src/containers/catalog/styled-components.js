@@ -7,7 +7,6 @@ const device = {
 };
 
 export const StyledCatalog = styled.div`
-  border: solid 1px red;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -16,7 +15,6 @@ export const StyledCatalog = styled.div`
 `;
 
 export const StyledProduct = styled.div`
-  border: solid 1px blue;
   box-sizing: border-box;
   flex-grow: 1;
   width: 25%;
@@ -34,4 +32,6 @@ export const StyledProduct = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;

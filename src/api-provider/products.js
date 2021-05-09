@@ -1,15 +1,7 @@
 import { httpService } from "../http/http-service";
-
-const PRODUTS_URL = `https://murmuring-tor-81614.herokuapp.com/api/goods`;
+import { PRODUTS_URL } from "api/constants";
 
 export class ProductsProviderClass {
-  store = null;
-  //   httpService = null;
-  constructor(dispatch, getState) {
-    // this.httpService = httpService;
-    this.store = { dispatch, getState };
-  }
-
   fetchDealers = async (dealersUrl) => {
     try {
       return await httpService.get(dealersUrl);
@@ -25,14 +17,8 @@ export class ProductsProviderClass {
     try {
       const products = await httpService.get(PRODUTS_URL, { dealers: dealers });
       return products;
-      //   this.store.dispatch()
     } catch (e) {
       console.error(e);
     }
   };
-  //   fetchProducts = async (dealers) => {
-  //       retur
-  //   };
 }
-
-// export const productsProvider = new ProductsProviderClass(httpService);

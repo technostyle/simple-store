@@ -4,18 +4,25 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartProducts } from "modules/cart/selectors";
 import { changeProductQuantityThunk } from "modules/cart/actions";
-import { IMG_HOST, ALT_IMG_ULR } from "api/constants";
+import { CounterPanel } from "components/molecules/counter-panel";
+import { ProductInfo } from "components/molecules/product-info";
+import { NavPanel } from "components/molecules/nav-panel";
+import { StyledHeader } from "components/molecules/header";
 
 const StyledCartContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledCartProduct = styled.div`
   display: flex;
   flex-direction: column;
-  border: solid 1px blue;
+  justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
+  margin-bottom: 10px;
 `;
 
 const ChangeQuantityPanel = ({ cartProduct }) => {
@@ -28,28 +35,20 @@ const ChangeQuantityPanel = ({ cartProduct }) => {
 
   return (
     Boolean(quantity) && (
-      <div>
-        <span>{quantity}</span>
-        <button onClick={decrement}>-</button>
-        <button onClick={increment}>+</button>
-        <button onClick={removeFromCart}>remove from cart</button>
-      </div>
+      <CounterPanel
+        quantity={quantity}
+        onDecrement={decrement}
+        onIncrement={increment}
+        onRemove={removeFromCart}
+      />
     )
   );
 };
 
 const CartProduct = ({ cartProduct }) => {
-  const { name, price, image } = cartProduct;
   return (
     <StyledCartProduct>
-      <img
-        width="120"
-        height="120"
-        src={IMG_HOST.concat(image)}
-        alt={ALT_IMG_ULR}
-      />
-      <div>name: {name}</div>
-      <div>price: {price}</div>
+      <ProductInfo {...cartProduct} />
       <ChangeQuantityPanel cartProduct={cartProduct} />
     </StyledCartProduct>
   );
@@ -58,15 +57,13 @@ const CartProduct = ({ cartProduct }) => {
 export const Cart = () => {
   const cartProducts = useSelector(getCartProducts);
   return (
-    <>
-      <div>
-        <header>
-          <nav>
-            <Link to="/">Back to catalog</Link>
-          </nav>
-        </header>
-      </div>
-      <h1>Cart list</h1>
+    <div>
+      <StyledHeader>
+        <h1>Cart list</h1>
+        <NavPanel>
+          <Link to="/">Сatalog</Link>
+        </NavPanel>
+      </StyledHeader>
       <StyledCartContainer>
         {cartProducts.map((cartProduct, idx) => (
           <CartProduct
@@ -75,6 +72,6 @@ export const Cart = () => {
           />
         ))}
       </StyledCartContainer>
-    </>
+    </div>
   );
 };

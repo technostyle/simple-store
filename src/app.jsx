@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import { Cart } from "./components/cart/cart";
-import { Catalog } from "./components/catalog/catalog";
+import { Cart } from "containers/cart/cart";
+import { Catalog } from "containers/catalog/catalog";
 import { initializeCatalogThunk } from "modules/catalog/actions";
 import { readCartStateFromLocalStorageThunk } from "modules/local-storage/actions";
 

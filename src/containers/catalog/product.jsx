@@ -5,7 +5,9 @@ import {
   changeProductQuantityThunk,
 } from "modules/cart/actions";
 import { StyledProduct } from "./styled-components";
-import { IMG_HOST, ALT_IMG_ULR } from "api/constants";
+import { AddToCartButton } from "components/atoms/buttons";
+import { CounterPanel } from "../../components/molecules/counter-panel";
+import { ProductInfo } from "../../components/molecules/product-info";
 
 const AddToCartPanel = ({ product }) => {
   const { name, quantity } = product;
@@ -16,27 +18,21 @@ const AddToCartPanel = ({ product }) => {
 
   return quantity ? (
     <div>
-      <span>{quantity}</span>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
+      <CounterPanel
+        quantity={quantity}
+        onDecrement={decrement}
+        onIncrement={increment}
+      />
     </div>
   ) : (
-    <button onClick={addToCart}>add to cart</button>
+    <AddToCartButton onClick={addToCart}>Add to cart</AddToCartButton>
   );
 };
 
 export const Product = ({ product }) => {
-  const { name, price, image } = product;
   return (
     <StyledProduct>
-      <img
-        width="120"
-        height="120"
-        src={IMG_HOST.concat(image)}
-        alt={ALT_IMG_ULR}
-      />
-      <div>name: {name}</div>
-      <div>price: {price}</div>
+      <ProductInfo {...product} />
       <AddToCartPanel product={product} />
     </StyledProduct>
   );

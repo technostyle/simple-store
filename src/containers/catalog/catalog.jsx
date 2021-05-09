@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDealers, getProductsWithCartInfo } from "modules/catalog/selectors";
+import { getUniqueProductsInCart } from "modules/cart/selectors";
 import { fetchProductsThunk } from "modules/catalog/actions";
 import { Product } from "./product";
 import { StyledCatalog } from "./styled-components";
+import { Badge } from "components/atoms/badge";
+import { NavPanel } from "components/molecules/nav-panel";
+import { StyledHeader } from "../../components/molecules/header";
 
 export const Catalog = () => {
   const dealers = useSelector(getDealers);
@@ -16,12 +20,17 @@ export const Catalog = () => {
   }, [dealers]);
 
   const products = useSelector(getProductsWithCartInfo);
+  const uniqueProductsInCart = useSelector(getUniqueProductsInCart);
 
   return (
     <div>
-      <nav>
-        <Link to="/cart">Cart</Link>
-      </nav>
+      <StyledHeader>
+        <h1>Products</h1>
+        <NavPanel>
+          <Link to="/cart">Cart</Link>
+          <Badge>{uniqueProductsInCart}</Badge>
+        </NavPanel>
+      </StyledHeader>
       <StyledCatalog>
         {products.map((product, idx) => (
           <Product key={idx} product={product} />

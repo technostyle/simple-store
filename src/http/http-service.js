@@ -1,6 +1,3 @@
-// const isEmptyValues = (obj) =>
-//   obj && !Object.keys(obj).some((key) => Boolean(obj[key]));
-
 const errorHandler = (res) => {
   if (!res.ok) {
     throw res;
@@ -10,7 +7,6 @@ const errorHandler = (res) => {
 };
 
 const createQueryUrl = (url, params) => {
-  //   if (isEmptyValues(params)) return url;
   if (Object.keys(params).length === 0) {
     return url;
   }
