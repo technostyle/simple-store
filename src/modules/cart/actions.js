@@ -1,10 +1,11 @@
-export const SET_CART_OPEN = "SET_CART_OPEN";
-export const CHANGE_PRODUCT_CART_QUANTITY = "CHANGE_PRODUCT_CART_QUANTITY";
+import { writeCartStateToLocalStorageThunk } from "modules/local-storage/actions";
+export const SET_CART_PRODUCTS = "SET_CART_PRODUCTS";
 export const ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART";
+export const CHANGE_PRODUCT_CART_QUANTITY = "CHANGE_PRODUCT_CART_QUANTITY";
 
-export const setCartOpen = (isOpen) => ({
-  type: SET_CART_OPEN,
-  payload: isOpen,
+export const setCartProducts = (cartProducts) => ({
+  type: SET_CART_PRODUCTS,
+  payload: cartProducts,
 });
 
 export const addProductToCart = (product) => ({
@@ -21,8 +22,10 @@ export const changeProductQuantityThunk = (name, quantityTerm) => (
   dispatch
 ) => {
   dispatch(changeProductQuantity(name, quantityTerm));
+  dispatch(writeCartStateToLocalStorageThunk());
 };
 
 export const addProductToCartThunk = (product) => (dispatch) => {
   dispatch(addProductToCart(product));
+  dispatch(writeCartStateToLocalStorageThunk());
 };

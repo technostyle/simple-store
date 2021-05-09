@@ -5,7 +5,7 @@ import {
   changeProductQuantityThunk,
 } from "modules/cart/actions";
 import { StyledProduct } from "./styled-components";
-import {IMG_HOST, ALT_IMG_ULR} from 'api/constants'
+import { IMG_HOST, ALT_IMG_ULR } from "api/constants";
 
 const AddToCartPanel = ({ product }) => {
   const { name, quantity } = product;
@@ -37,7 +37,7 @@ export const Product = ({ product }) => {
       />
       <div>name: {name}</div>
       <div>price: {price}</div>
-      <AddToCartPanel product={product}/>
+      <AddToCartPanel product={product} />
     </StyledProduct>
   );
 };

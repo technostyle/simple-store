@@ -12,21 +12,12 @@ const setDealers = (delaers) => ({
   payload: delaers,
 });
 
-export const initializeCatalogThunk = (dealers) => async (
-  dispatch,
-  getState
-) => {
-  // console.log({dealers})
+export const initializeCatalogThunk = (dealers) => async (dispatch) => {
   dispatch(setDealers(dealers));
-  // const productsProvider = new ProductsProviderClass(dispatch, getState);
-  // const dealers = await productsProvider.fetchDealers(dealersUrl);
-  // console.log(dealers, dealersUrl)
 };
 
 export const fetchProductsThunk = (dealers) => async (dispatch, getState) => {
   const productsProvider = new ProductsProviderClass(dispatch, getState);
-  // console.log({ dealers });
   const products = await productsProvider.fetchProducts(dealers);
   dispatch(setProducts(products));
-  // console.log(products, dispatch, getState);
 };

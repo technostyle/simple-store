@@ -1,4 +1,5 @@
 import {
+  SET_CART_PRODUCTS,
   ADD_PRODUCT_TO_CART,
   CHANGE_PRODUCT_CART_QUANTITY,
 } from "./actions";
@@ -11,14 +12,19 @@ const intialState = {
 
 export const cartReducer = (state = intialState, { type, payload }) => {
   switch (type) {
+    case SET_CART_PRODUCTS:
+      return setCartProductsReducer(state, payload);
     case ADD_PRODUCT_TO_CART:
-      return addProductToCartReducer(state, payload)
+      return addProductToCartReducer(state, payload);
     case CHANGE_PRODUCT_CART_QUANTITY:
-      return changeProductsQuantityReducer(state, payload)
+      return changeProductsQuantityReducer(state, payload);
     default:
       return state;
   }
 };
+function setCartProductsReducer(state, payload) {
+  return { ...state, cartProducts: payload };
+}
 
 function addProductToCartReducer(state, payload) {
   return {
@@ -36,7 +42,7 @@ function changeProductsQuantityReducer(state, payload) {
 
     return {
       ...product,
-      quantity: newQuantity,  
+      quantity: newQuantity,
     };
   });
 

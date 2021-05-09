@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { getCartProducts } from "modules/cart/selectors";
 import { changeProductQuantityThunk } from "modules/cart/actions";
-import {IMG_HOST, ALT_IMG_ULR} from 'api/constants'
+import { IMG_HOST, ALT_IMG_ULR } from "api/constants";
 
 const StyledCartContainer = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const StyledCartProduct = styled.div`
   display: flex;
@@ -23,20 +23,23 @@ const ChangeQuantityPanel = ({ cartProduct }) => {
   const dispatch = useDispatch();
   const increment = () => dispatch(changeProductQuantityThunk(name, 1));
   const decrement = () => dispatch(changeProductQuantityThunk(name, -1));
-  const removeFromCart = () => dispatch(changeProductQuantityThunk(name, Number.NEGATIVE_INFINITY));
+  const removeFromCart = () =>
+    dispatch(changeProductQuantityThunk(name, Number.NEGATIVE_INFINITY));
 
-  return Boolean(quantity) && (
-    <div>
-      <span>{quantity}</span>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
-      <button onClick={removeFromCart}>remove from cart</button>
-    </div>
+  return (
+    Boolean(quantity) && (
+      <div>
+        <span>{quantity}</span>
+        <button onClick={decrement}>-</button>
+        <button onClick={increment}>+</button>
+        <button onClick={removeFromCart}>remove from cart</button>
+      </div>
+    )
   );
 };
 
 const CartProduct = ({ cartProduct }) => {
-  const {name, price, image} = cartProduct;
+  const { name, price, image } = cartProduct;
   return (
     <StyledCartProduct>
       <img
@@ -47,7 +50,7 @@ const CartProduct = ({ cartProduct }) => {
       />
       <div>name: {name}</div>
       <div>price: {price}</div>
-      <ChangeQuantityPanel cartProduct={cartProduct}/>
+      <ChangeQuantityPanel cartProduct={cartProduct} />
     </StyledCartProduct>
   );
 };
@@ -66,7 +69,10 @@ export const Cart = () => {
       <h1>Cart list</h1>
       <StyledCartContainer>
         {cartProducts.map((cartProduct, idx) => (
-          <CartProduct key={cartProduct?.name || idx} cartProduct={cartProduct} />
+          <CartProduct
+            key={cartProduct?.name || idx}
+            cartProduct={cartProduct}
+          />
         ))}
       </StyledCartContainer>
     </>
