@@ -29,3 +29,8 @@ export const addProductToCartThunk = (product) => (dispatch) => {
   dispatch(addProductToCart(product));
   dispatch(writeCartStateToLocalStorageThunk());
 };
+
+export const clearCartThunk = () => dispatch => {
+  dispatch(setCartProducts([]))
+  dispatch(writeCartStateToLocalStorageThunk());
+}

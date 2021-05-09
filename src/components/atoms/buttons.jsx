@@ -68,6 +68,16 @@ export const AddToCartButton = ({ onClick, children }) => (
     {children}
   </Button>
 );
+export const ClearCartButton = ({onClick}) => (
+    <Button
+    onClick={onClick}
+    height={buttonSize}
+    type={"danger"}
+    isOutline
+  >
+    Clear Cart
+  </Button>
+)
 export const RemoveFromCartButton = ({ onClick }) => (
   <Button
     onClick={onClick}
