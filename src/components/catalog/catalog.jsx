@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getDealers, getProducts } from "redux-modules/catalog/selectors";
+import { getDealers, getProductsWithCartInfo } from "redux-modules/catalog/selectors";
 import { fetchProductsThunk } from "redux-modules/catalog/actions";
 import { Product } from "./product";
 import { StyledCatalog } from "./styled-components";
 
 export const Catalog = () => {
   const dealers = useSelector(getDealers);
-  const products = useSelector(getProducts);
   const dispatch = useDispatch();
   useEffect(() => {
     if (dealers) {
       dispatch(fetchProductsThunk(dealers));
     }
   }, [dealers]);
+
+  const products = useSelector(getProductsWithCartInfo);
 
   return (
     <div>

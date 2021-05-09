@@ -8,7 +8,7 @@ module.exports = merge(common, {
     filename: "[name].js",
   },
   devServer: {
-    port: 3001,
+    port: 3000,
     contentBase: "./src",
   },
   devtool: "inline-source-map",

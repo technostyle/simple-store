@@ -4,9 +4,7 @@ import styled from "styled-components";
 import {useSelector, useDispatch} from 'react-redux'
 import { getCartProducts } from "redux-modules/cart/selectors";
 import { changeProductQuantityThunk } from "redux-modules/cart/actions";
-
-const IMG_HOST = `https://murmuring-tor-81614.herokuapp.com`;
-const ALT_IMG_ULR = `${IMG_HOST}/logo/node.png`;
+import {IMG_HOST, ALT_IMG_ULR} from 'api/constants'
 
 const StyledCartContainer = styled.div`
   display: flex;

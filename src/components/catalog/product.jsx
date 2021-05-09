@@ -1,27 +1,14 @@
-import React, { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import {
   addProductToCartThunk,
   changeProductQuantityThunk,
 } from "redux-modules/cart/actions";
-import {getCartProducts} from "redux-modules/cart/selectors";
 import { StyledProduct } from "./styled-components";
-
-// TODO: rename app_host
-const IMG_HOST = `https://murmuring-tor-81614.herokuapp.com`;
-const ALT_IMG_ULR = `${IMG_HOST}/logo/node.png`;
+import {IMG_HOST, ALT_IMG_ULR} from 'api/constants'
 
 const AddToCartPanel = ({ product }) => {
-  const cartProducts = useSelector(getCartProducts);
-  // console.log({cartProducts})
-  const { name } = product;
-  const currentCartProduct = cartProducts.find(
-    (cartProduct) => {
-      // const isEqual = cartProduct.name === name;
-      // console.log({isEqual, cpn: cartProduct.name, name})
-      return cartProduct.name === name}
-  );
-  const {quantity} = currentCartProduct || {};
+  const { name, quantity } = product;
   const dispatch = useDispatch();
   const increment = () => dispatch(changeProductQuantityThunk(name, 1));
   const decrement = () => dispatch(changeProductQuantityThunk(name, -1));
