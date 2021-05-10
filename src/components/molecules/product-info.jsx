@@ -10,15 +10,18 @@ const StyledProductInfo = styled.div`
   justify-content: space-between;
 `;
 
-export const ProductInfo = ({ name, price, image }) => (
-  <StyledProductInfo>
-    <img
-      width={IMG_SIZE}
-      height={IMG_SIZE}
-      src={IMG_HOST.concat(image)}
-      alt={ALT_IMG_ULR}
-    />
-    <div>name: {name}</div>
-    <div>price: {price} $</div>
-  </StyledProductInfo>
-);
+export const ProductInfo = ({ name, price, image, isTotalPrice, quantity }) => {
+  const properPrice = isTotalPrice && quantity ? quantity * price : price;
+  return (
+    <StyledProductInfo>
+      <img
+        width={IMG_SIZE}
+        height={IMG_SIZE}
+        src={IMG_HOST.concat(image)}
+        alt={ALT_IMG_ULR}
+      />
+      <div>name: {name}</div>
+      <div>price: {properPrice} $</div>
+    </StyledProductInfo>
+  );
+};

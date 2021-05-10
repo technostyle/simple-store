@@ -30,7 +30,7 @@ export const addProductToCartThunk = (product) => (dispatch) => {
   dispatch(writeCartStateToLocalStorageThunk());
 };
 
-export const clearCartThunk = () => dispatch => {
-  dispatch(setCartProducts([]))
+export const clearCartThunk = () => (dispatch) => {
+  dispatch(setCartProducts([]));
   dispatch(writeCartStateToLocalStorageThunk());
-}
+};

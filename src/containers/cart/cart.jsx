@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartProducts } from "modules/cart/selectors";
-import { changeProductQuantityThunk, clearCartThunk } from "modules/cart/actions";
-import {ClearCartButton} from 'components/atoms/buttons'
+import {
+  changeProductQuantityThunk,
+  clearCartThunk,
+} from "modules/cart/actions";
+import { ClearCartButton } from "components/atoms/buttons";
 import { CounterPanel } from "components/molecules/counter-panel";
 import { ProductInfo } from "components/molecules/product-info";
 import { NavPanel } from "components/molecules/nav-panel";
@@ -49,7 +52,7 @@ const ChangeQuantityPanel = ({ cartProduct }) => {
 const CartProduct = ({ cartProduct }) => {
   return (
     <StyledCartProduct>
-      <ProductInfo {...cartProduct} />
+      <ProductInfo {...cartProduct} isTotalPrice />
       <ChangeQuantityPanel cartProduct={cartProduct} />
     </StyledCartProduct>
   );
@@ -68,7 +71,7 @@ export const Cart = () => {
         </NavPanel>
       </StyledHeader>
       <StyledCartContainer>
-        {cartProducts.length > 0 && <ClearCartButton onClick={onClearCart}/>}
+        {cartProducts.length > 0 && <ClearCartButton onClick={onClearCart} />}
         {cartProducts.map((cartProduct, idx) => (
           <CartProduct
             key={cartProduct?.name || idx}
@@ -76,6 +79,6 @@ export const Cart = () => {
           />
         ))}
       </StyledCartContainer>
-      </>
+    </>
   );
 };
