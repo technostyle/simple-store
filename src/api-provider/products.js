@@ -1,4 +1,4 @@
-import { httpService } from "../http/http-service";
+import { httpService } from "http/http-service";
 import { PRODUTS_URL } from "api/constants";
 
 export class ProductsProviderClass {
