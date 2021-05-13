@@ -8,8 +8,13 @@ import { StyledProduct } from "./styled-components";
 import { AddToCartButton } from "components/atoms/buttons";
 import { CounterPanel } from "../../components/molecules/counter-panel";
 import { ProductInfo } from "../../components/molecules/product-info";
+import {Product} from 'common/types'
 
-const AddToCartPanel = ({ product }) => {
+interface ProductComponentProps {
+  product: Product
+} 
+
+const AddToCartPanel = ({ product }: ProductComponentProps) => {
   const { name, quantity } = product;
   const dispatch = useDispatch();
   const increment = () => dispatch(changeProductQuantityThunk(name, 1));
@@ -29,7 +34,7 @@ const AddToCartPanel = ({ product }) => {
   );
 };
 
-export const Product = ({ product }) => {
+export const ProductComponent = ({ product }: ProductComponentProps) => {
   return (
     <StyledProduct>
       <ProductInfo {...product} />

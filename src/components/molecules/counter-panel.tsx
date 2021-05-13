@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CounterButton, RemoveFromCartButton } from "components/atoms/buttons";
 
-const PanelContainer = styled.div`
+const PanelContainer = styled.div<{withRemove?: boolean}>`
   width: ${({ withRemove }) => (withRemove ? "170px" : "130px")};
   display: flex;
   justify-content: space-between;
@@ -22,12 +22,19 @@ const StyledValue = styled.div`
   align-items: center;
 `;
 
+interface CounterPanelProps {
+  quantity: number,
+  onDecrement: () => void,
+  onIncrement: () => void,
+  onRemove?: () => void,
+}
+
 export const CounterPanel = ({
   quantity,
   onDecrement,
   onIncrement,
   onRemove,
-}) => {
+}: CounterPanelProps) => {
   return (
     <PanelContainer withRemove={Boolean(onRemove)}>
       <StyledValue>{quantity}</StyledValue>

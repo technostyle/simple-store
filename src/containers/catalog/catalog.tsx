@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getDealers, getProductsWithCartInfo } from "modules/catalog/selectors";
 import { getUniqueProductsInCart } from "modules/cart/selectors";
 import { fetchProductsThunk } from "modules/catalog/actions";
-import { Product } from "./product";
+import { ProductComponent } from "./product";
 import { StyledCatalog } from "./styled-components";
 import { Badge } from "components/atoms/badge";
 import { NavPanel } from "components/molecules/nav-panel";
@@ -32,8 +32,8 @@ export const Catalog = () => {
         </NavPanel>
       </StyledHeader>
       <StyledCatalog>
-        {products.map((product, idx) => (
-          <Product key={idx} product={product} />
+        {products.map((product: any, idx: number) => (
+          <ProductComponent key={idx} product={product} />
         ))}
       </StyledCatalog>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartProducts } from "modules/cart/selectors";
 import {
@@ -12,24 +11,14 @@ import { CounterPanel } from "components/molecules/counter-panel";
 import { ProductInfo } from "components/molecules/product-info";
 import { NavPanel } from "components/molecules/nav-panel";
 import { StyledHeader } from "components/molecules/header";
+import {StyledCartContainer,StyledCartProduct } from './styled-components'
+import {Product} from 'common/types';
 
-const StyledCartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
+interface ChangeQuantityPanelProps {
+  cartProduct: Product
+}
 
-const StyledCartProduct = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-`;
-
-const ChangeQuantityPanel = ({ cartProduct }) => {
+const ChangeQuantityPanel = ({ cartProduct }: ChangeQuantityPanelProps) => {
   const { name, quantity } = cartProduct;
   const dispatch = useDispatch();
   const increment = () => dispatch(changeProductQuantityThunk(name, 1));
@@ -49,7 +38,7 @@ const ChangeQuantityPanel = ({ cartProduct }) => {
   );
 };
 
-const CartProduct = ({ cartProduct }) => {
+const CartProduct = ({ cartProduct }: ChangeQuantityPanelProps) => {
   return (
     <StyledCartProduct>
       <ProductInfo {...cartProduct} isTotalPrice />
@@ -72,7 +61,7 @@ export const Cart = () => {
       </StyledHeader>
       <StyledCartContainer>
         {cartProducts.length > 0 && <ClearCartButton onClick={onClearCart} />}
-        {cartProducts.map((cartProduct, idx) => (
+        {cartProducts.map((cartProduct: any, idx: number)=> (
           <CartProduct
             key={cartProduct?.name || idx}
             cartProduct={cartProduct}

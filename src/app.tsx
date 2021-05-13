@@ -6,7 +6,11 @@ import { Catalog } from "containers/catalog/catalog";
 import { initializeCatalogThunk } from "modules/catalog/actions";
 import { readCartStateFromLocalStorageThunk } from "modules/local-storage/actions";
 
-export const App = ({ dealers }) => {
+export interface AppProps {
+  dealers: Array<string>
+}
+
+export const App = ({ dealers } : AppProps) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initializeCatalogThunk(dealers));

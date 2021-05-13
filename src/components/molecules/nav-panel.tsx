@@ -6,6 +6,6 @@ const StyledNavPanel = styled.nav`
   align-items: center;
 `;
 
-export const NavPanel = ({ children }) => (
+export const NavPanel = ({ children }: {children: any}) => (
   <StyledNavPanel>{children}</StyledNavPanel>
 );

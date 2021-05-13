@@ -16,7 +16,17 @@ const hover = {
   danger: "#fa7380",
 };
 
-const StyledButton = styled.button`
+
+interface ButtonProps {
+  onClick: () => void,
+  type?: "success" | "danger",
+  isOutline?: boolean,
+  height?: string,
+  width?: string,
+  children?: any
+}
+
+const StyledButton = styled.button<ButtonProps>`
   font-size: 16px;
   height: ${({ height }) => height};
   width: ${({ width }) => width};
@@ -33,6 +43,8 @@ const StyledButton = styled.button`
   text-decoration: none;
   outline: none;
 `;
+
+
 export const Button = ({
   onClick,
   type,
@@ -40,9 +52,10 @@ export const Button = ({
   height,
   width,
   children,
-}) => (
+}: ButtonProps) => (
   <StyledButton
     onClick={onClick}
+    // @ts-ignore
     type={type}
     isOutline={isOutline}
     height={height}
@@ -52,7 +65,8 @@ export const Button = ({
   </StyledButton>
 );
 
-export const CounterButton = ({ onClick, children }) => (
+
+export const CounterButton = ({ onClick, children} : ButtonProps) => (
   <Button
     onClick={onClick}
     height={buttonSize}
@@ -63,17 +77,17 @@ export const CounterButton = ({ onClick, children }) => (
     {children}
   </Button>
 );
-export const AddToCartButton = ({ onClick, children }) => (
+export const AddToCartButton = ({ onClick, children }: ButtonProps) => (
   <Button onClick={onClick} height={buttonSize} type={"success"}>
     {children}
   </Button>
 );
-export const ClearCartButton = ({ onClick }) => (
+export const ClearCartButton = ({ onClick }: ButtonProps) => (
   <Button onClick={onClick} height={buttonSize} type={"danger"} isOutline>
     Clear Cart
   </Button>
 );
-export const RemoveFromCartButton = ({ onClick }) => (
+export const RemoveFromCartButton = ({ onClick }: ButtonProps) => (
   <Button
     onClick={onClick}
     height={buttonSize}

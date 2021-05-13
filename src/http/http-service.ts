@@ -1,4 +1,4 @@
-const errorHandler = (res) => {
+const errorHandler = (res: any) => {
   if (!res.ok) {
     throw res;
   }
@@ -6,7 +6,11 @@ const errorHandler = (res) => {
   return res;
 };
 
-const createQueryUrl = (url, params) => {
+interface searchParams {
+  [key: string]: string | Array<string>
+}
+
+const createQueryUrl = (url: string, params: searchParams) => {
   if (Object.keys(params).length === 0) {
     return url;
   }
@@ -14,6 +18,7 @@ const createQueryUrl = (url, params) => {
   let queryUrl = `${url}?`;
   Object.keys(params).forEach((key) => {
     const value = Array.isArray(params[key])
+    // @ts-ignore
       ? params[key].join(",")
       : params[key];
     queryUrl += `${key}=${value}`;
@@ -23,7 +28,7 @@ const createQueryUrl = (url, params) => {
 };
 
 class HttpService {
-  get = (url, params) => {
+  get = (url: string, params?: searchParams) => {
     const properUrl = params ? createQueryUrl(url, params) : url;
     return fetch(properUrl)
       .then((res) => res.json())

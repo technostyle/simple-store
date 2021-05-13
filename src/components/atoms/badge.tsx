@@ -16,4 +16,4 @@ const StyledBadge = styled.div`
   text-align: center;
 `;
 
-export const Badge = ({ children }) => <StyledBadge>{children}</StyledBadge>;
+export const Badge = ({ children }: any) => <StyledBadge>{children}</StyledBadge>;
